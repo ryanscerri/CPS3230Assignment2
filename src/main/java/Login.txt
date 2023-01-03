@@ -1,0 +1,25 @@
+States:
+
+loggedOut
+loggedIn
+BadLogin
+ViewingAlerts
+LoggingIn
+
+Variables:
+
+loggedin (bool)
+loggedout (bool)
+ViewingAlerts (bool)
+
+Transitions:
+
+
+LoggingIn -> loggedIn       \ CorrectLogin            \ loggedIn = false; loggedout = true; ViewingAlerts = false;
+LoggedIn -> loggedOut       \ LogOut                  \ loggedIn = true; loggedout = false; ViewingAlerts = false;
+LoggedIn -> ViewingAlerts   \ ViewingAlerts       \ loggedIn = true; loggedout = false; ViewingAlerts = true;
+(bool) LoggingIn -> BadLogin \ incorrectLogin   \ loggedIn = false; loggedout = true; ViewingAlerts = false;
+ViewingAlerts -> loggedOut  \ LogOut             \ loggedIn = false; loggedout = true; ViewingAlerts = false;
+
+
+

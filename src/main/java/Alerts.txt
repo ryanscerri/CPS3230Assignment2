@@ -1,0 +1,25 @@
+States:
+
+ViewingAlerts
+CorrectNumberOfDeleteAndAlerts
+IncorrectNumberOfAlerts
+CheckingProperties
+MissingInfo
+ContainsAllInfo
+
+
+Variables:
+
+CheckDeleteAndAlerts
+CorrectNumberOfDeleteAndAlerts
+CheckProperties
+ContainsInfo
+
+Transitions:
+
+
+ViewingAlerts -> CorrectNumberOfDeleteAndAlerts       \ DeleteAndPostedSuccesfully()                    \ CheckDeleteAndAlerts = true; CorrectNumberOfDeleteAndAlerts = true; CheckProperties = false; ContainsInfo = false;
+ViewingAlerts -> IncorrectNumberOfAlerts               \ DeleteAndPostedUnsuccesfully()                  \ CheckDeleteAndAlerts = true; CorrectNumberOfDeleteAndAlerts = false; CheckProperties = false; ContainsInfo = false;
+CorrectNumberOfDeleteAndAlerts -> CheckingProperties    \ CheckAlertProperties()                           \ CheckDeleteAndAlerts = false; CorrectNumberOfDeleteAndAlerts = true; CheckProperties = true; ContainsInfo = false;
+CheckingProperties -> MissingInfo                        \ ContainsAllInfo()                                \ CheckDeleteAndAlerts = false; CorrectNumberOfDeleteAndAlerts = true; CheckProperties = true; ContainsInfo = false;
+CheckingProperties -> ContainsAllInfo                     \ MissingInfo()                                    \ CheckDeleteAndAlerts = false; CorrectNumberOfDeleteAndAlerts = true; CheckProperties = true; ContainsInfo = true;
