@@ -1,0 +1,56 @@
+GLOBAL 
+{
+    VARIABLES
+    {
+
+    }
+
+    EVENTS
+    {
+
+        correctLogin() = {*.correctLogin()}
+        incorrectLogin() = {*.incorrectLogin()}
+        viewAlerts() = {*.viewAlerts()}
+        LoggedOut() = {*.LoggedOut()}
+    }
+
+    PROPERTY login
+    {
+        STATES
+        {
+            ACCEPTING
+            {
+                
+                BadLogin
+                LoggedOut
+                
+                
+            }
+
+            BAD
+            {	
+				
+            }
+
+            NORMAL
+            {
+            	viewingAlerts
+                loggedIn
+            }
+
+            STARTING
+            {
+                loggingIn
+            }
+        }
+
+        TRANSITIONS
+        {
+            %%first state -> second state [event\condition\action;]
+            loggingIn -> BadLogin [incorrectLogin()\\System.out.println("loggedOut -> BAD LOGIN");]
+            loggingIn -> loggedIn [correctLogin()\\System.out.println("loggedOut -> loggedIn");]
+            loggedIn -> viewingAlerts [viewAlerts()\\System.out.println("loggedIn -> viewingAlerts");]
+            viewingAlerts -> LoggedOut [LoggedOut()\\System.out.println("viewingAlerts -> LoggedOut");]
+        }
+    }
+}

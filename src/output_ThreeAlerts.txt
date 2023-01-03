@@ -1,0 +1,9 @@
+[Alerts]AUTOMATON::> Alerts() STATE::>ViewingAlerts
+Correct number of DELETE and POST have been made
+[Alerts]MOVED ON METHODCALL: void Main.Alertsrunner.DeleteAndPostedSuccesfully() TO STATE::> CorrectNumberOfDeleteAndAlerts
+[Alerts]AUTOMATON::> Alerts() STATE::>CorrectNumberOfDeleteAndAlerts
+Alerts are being checked!
+[Alerts]MOVED ON METHODCALL: void Main.Alertsrunner.checkAlertProperties(JSONArray) TO STATE::> CheckingProperties
+[Alerts]AUTOMATON::> Alerts() STATE::>CheckingProperties
+Posts are missing info
+[Alerts]MOVED ON METHODCALL: void Main.Alertsrunner.MissingInfo(String) TO STATE::> (((SYSTEM REACHED AN ACCEPTED STATE)))  MissingInfo

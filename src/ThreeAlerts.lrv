@@ -1,0 +1,55 @@
+GLOBAL 
+{
+    VARIABLES
+    {
+		
+    }
+
+    EVENTS
+    {
+		DeleteAndPostedSuccesfully() = {*.DeleteAndPostedSuccesfully()}
+        PostedIncorrectly() = {*.PostedIncorrectly()}
+        ContainsAllInfo() = {*.ContainsAllInfo()}
+        MissingInfo() = {*.MissingInfo()}
+        checkAlertProperties() = {*.checkAlertProperties()}
+    }
+
+    PROPERTY Alerts
+    {
+        STATES
+        {
+            ACCEPTING
+            {
+                InCorrectNumberOfAlerts
+                ContainsAllInfo
+                MissingInfo
+            }
+
+            BAD
+            {	
+				
+            }
+
+            NORMAL
+            {
+            	CorrectNumberOfDeleteAndAlerts
+                CheckingProperties
+            }
+
+            STARTING
+            {
+                ViewingAlerts
+            }
+        }
+
+        TRANSITIONS
+        {
+            %%first state -> second state [event\condition\action;]
+            ViewingAlerts -> CorrectNumberOfDeleteAndAlerts [DeleteAndPostedSuccesfully()\\System.out.println("Correct number of DELETE and POST have been made");]
+            ViewingAlerts -> InCorrectNumberOfAlerts [PostedIncorrectly()\\System.out.println("ERROR! : InCorrect number of posts have been made");]
+			CorrectNumberOfDeleteAndAlerts -> CheckingProperties [checkAlertProperties()\\System.out.println("Alerts are being checked!");]
+			CheckingProperties -> ContainsAllInfo [ContainsAllInfo()\\System.out.println("Posts contain all info");]
+			CheckingProperties -> MissingInfo [MissingInfo()\\System.out.println("Posts are missing info");]
+        }
+    }
+}
